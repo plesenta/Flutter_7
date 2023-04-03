@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:practich5/profile_screen.dart';
+import 'package:practich5/registration_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -41,7 +42,7 @@ class  _HomePageState extends State <HomePage> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return LoginScreen();
-          }
+          }                
           return const Center(
             child: CircularProgressIndicator(),
           );
@@ -89,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            "myApp title", 
+            "Authorization", 
             style: TextStyle(
               color: Colors.black,
                fontSize: 28.0,
@@ -158,11 +159,37 @@ class _LoginScreenState extends State<LoginScreen> {
                 )),
             ),
           ),
+          Container(
+          width: double.infinity,
+           child: RawMaterialButton(
+            fillColor: const  Color(0xFF0069FE),
+            elevation: 0.0,
+            padding: const EdgeInsets.symmetric(vertical: 20.0),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12.0)),
+            onPressed: () {
+            _navigateToNextScreen(context);
+          },       
+          child: const Text('Sign Up',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18.0,
+              ),
+          ),         
+          ),
+          ),
         ],
       ),
     );
   }
+  void _navigateToNextScreen(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => NewScreen()));
+  }
+
 }
+
+
+
 
 
 
